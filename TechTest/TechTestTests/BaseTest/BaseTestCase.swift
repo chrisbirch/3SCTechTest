@@ -7,7 +7,7 @@ class BaseTestCase: XCTestCase {
     }
     
     var mockNetworkService: MockNetworkService!
-    var mockDateFormatterService: MockDateFormatterService!
+    var mockPokemonService: MockPokemonService!
     var mockDateService: MockDateService!
 
     override func setUpWithError() throws {
@@ -15,11 +15,11 @@ class BaseTestCase: XCTestCase {
         resolver.reset()
 
         mockNetworkService = .init()
-        mockDateFormatterService = .init()
+        mockPokemonService = .init()
         mockDateService = .init()
 
         resolver.add(mockNetworkService as NetworkService)
-        resolver.add(mockDateFormatterService as DateFormatterService)
+        resolver.add(mockPokemonService as PokemonService)
         resolver.add(mockDateService as DateService)
     }
 }

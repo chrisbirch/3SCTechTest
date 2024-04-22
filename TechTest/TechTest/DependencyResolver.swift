@@ -36,7 +36,6 @@ class DependencyResolver {
         clear()
         add(NetworkServiceImplementation() as NetworkService)
         add(DateServiceImplementation() as DateService)
-        add(DateFormatterServiceImplementation() as DateFormatterService)
     }
 
     func add<T>(_ injectable: T) {

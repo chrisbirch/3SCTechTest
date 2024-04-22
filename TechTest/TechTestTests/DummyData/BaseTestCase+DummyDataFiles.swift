@@ -3,6 +3,7 @@ import XCTest
 
 extension BaseTestCase {
     enum JSONDummyDataFiles {
-//        static let <#Name#> = <#FilenameInBundle#>
+        static let pokemonList = "DummyPokemonList"
+        static let pokemonDetail = "DummyPokemonDetail"
     }
 }

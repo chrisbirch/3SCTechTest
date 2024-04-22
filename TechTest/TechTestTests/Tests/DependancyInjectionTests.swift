@@ -4,11 +4,10 @@ import XCTest
 class DependancyInjectionTests: XCTestCase {
     var sut: DependencyResolver!
     var mockDateService: MockDateService!
-    @Inject
-    var injectedService: DateService
+    @Inject var injectedService: DateService
 
     @InjectOptional
-    var injectedOptionalService: DateFormatterService?
+    var injectedOptionalService: PokemonService?
 
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -29,8 +28,8 @@ class DependancyInjectionTests: XCTestCase {
     }
 
     func testPropertyWrapperOptionalServiceWasInjectedThenServiceIsReturned() throws {
-        let mockService = MockDateFormatterService()
-        sut.add(mockService as DateFormatterService)
+        let mockService = MockPokemonService()
+        sut.add(mockService as PokemonService)
         XCTAssertNotNil(injectedOptionalService)
     }
 
@@ -48,8 +47,8 @@ class DependancyInjectionTests: XCTestCase {
     }
 
     func testPropertyWrapperOptionalServiceIsInjectedWhenClearCalledThenNoServiceIsReturned() throws {
-        let mockService = MockDateFormatterService()
-        sut.add(mockService as DateFormatterService)
+        let mockService = MockPokemonService()
+        sut.add(mockService as PokemonService)
         XCTAssertNotNil(injectedOptionalService)
 
         sut.clear()
