@@ -1,6 +1,5 @@
 import Foundation
 
-/// returned as part of https://pokeapi.co/api/v2/pokemon/
 struct PokemonListResponse: Decodable {
     struct PokemonListItem: Identifiable, Decodable {
         var id: String { name }

@@ -1,7 +1,7 @@
 import Foundation
 extension Pokemon {
-    struct Stat: Decodable {
-        struct InnerStat: Decodable {
+    struct Stat: Decodable, Equatable {
+        struct InnerStat: Decodable, Equatable {
             let name: String
             let url: URL
         }

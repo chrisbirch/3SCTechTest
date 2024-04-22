@@ -7,6 +7,7 @@ protocol PokemonService {
 
 class PokemonServiceImplementation: PokemonService {
     @Inject private var networkService: NetworkService
+    @Inject private var storageService: PokemonStorageService
     private let maxNumberOfItemsPerRequest = 2000
     
     func pokemonList() async throws -> [PokemonListResponse.PokemonListItem] {
@@ -23,10 +24,14 @@ class PokemonServiceImplementation: PokemonService {
     }
     
     func pokemon(named name: String) async throws -> Pokemon {
-        let requestURL = Urls.pokemonDetail(name: name).url
-        print("Downloading pokemon at url: \(requestURL)")
-        let data = try await networkService.request(.init(url: requestURL))
-        return try JSONDecoder.snakeCaseDecoder.decode(Pokemon.self, from: data)
+        if let cachedPokemon = storageService.retrievePokemon(named: name) {
+            return cachedPokemon
+        } else {
+            let requestURL = Urls.pokemonDetail(name: name).url
+//            print("Downloading pokemon at url: \(requestURL)")
+            let data = try await networkService.request(.init(url: requestURL))
+            return try JSONDecoder.snakeCaseDecoder.decode(Pokemon.self, from: data)
+        }
     }
 }
 

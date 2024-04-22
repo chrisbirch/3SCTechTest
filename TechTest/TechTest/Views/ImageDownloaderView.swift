@@ -1,4 +1,5 @@
 import SwiftUI
+import Kingfisher
 
 struct ImageDownloaderView: View {
     let width: CGFloat
@@ -6,20 +7,18 @@ struct ImageDownloaderView: View {
     let url: URL
     
     var body: some View {
-        AsyncImage(url: url) { phase in
-            switch phase {
-            case .success(let image):
-                image.resizable()
-                .aspectRatio(contentMode: .fit)
-            case .failure(let error):
-                let _ = print(error)
-                Text("error: \(error.localizedDescription)")
-            case .empty:
-                ProgressView()
-            @unknown default:
-                fatalError()
-            }
-        }.frame(maxWidth: width, maxHeight: height)
+        VStack {
+            Spacer()
+            KFImage(url)
+                .placeholder {
+                    ProgressView().frame(maxWidth: width, maxHeight: height)
+                }
+                .resizable()
+                .fade(duration: 0.25)
+                .frame(maxWidth: width, maxHeight: height)
+            Spacer()
+        }
+        .frame(maxWidth: width, maxHeight: height)
         
     }
 }
