@@ -25,7 +25,9 @@ struct PokemonListView: View {
                         
                         ListItemView(pokemonUIItem: pokemonUIItem)
                             .onTapGesture {
-                                applicationViewModel.naviagtionPath += [pokemonUIItem]
+                                withAnimation {
+                                    applicationViewModel.naviagtionPath += [pokemonUIItem]
+                                }
                             }
                         
                         

@@ -50,9 +50,13 @@ extension PokemonListView {
             }
             .padding(.leading, 10)
             .frame(maxWidth: .infinity, maxHeight: 100)
-            .navigationTitle("List")
+            .navigationTitle("Pokemons!")
             .background {
-                isSelected ? Color.red : Color.clear
+                if isSelected {
+                    RoundedRectangle(cornerRadius: 6, style: .continuous)
+                        .fill(.red)
+                        .padding(4)
+                } else { Color.clear }
             }
             .task {
                 do {
