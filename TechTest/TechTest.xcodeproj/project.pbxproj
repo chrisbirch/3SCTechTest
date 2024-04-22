@@ -40,6 +40,8 @@
 		E994A14A2BD6DB0400E1E31A /* PokemonServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994A1492BD6DB0400E1E31A /* PokemonServiceTests.swift */; };
 		E994A14C2BD6DB5B00E1E31A /* JSONModelDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994A14B2BD6DB5B00E1E31A /* JSONModelDecodingTests.swift */; };
 		E994A14D2BD6DD3300E1E31A /* DummyPokemonList.json in Resources */ = {isa = PBXBuildFile; fileRef = E994A1472BD6D6AA00E1E31A /* DummyPokemonList.json */; };
+		E994A14F2BD6E39000E1E31A /* iPadContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994A14E2BD6E39000E1E31A /* iPadContentView.swift */; };
+		E994A1512BD6E3AE00E1E31A /* iPhoneContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994A1502BD6E3AE00E1E31A /* iPhoneContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		E994A1472BD6D6AA00E1E31A /* DummyPokemonList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DummyPokemonList.json; sourceTree = "<group>"; };
 		E994A1492BD6DB0400E1E31A /* PokemonServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonServiceTests.swift; sourceTree = "<group>"; };
 		E994A14B2BD6DB5B00E1E31A /* JSONModelDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONModelDecodingTests.swift; sourceTree = "<group>"; };
+		E994A14E2BD6E39000E1E31A /* iPadContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPadContentView.swift; sourceTree = "<group>"; };
+		E994A1502BD6E3AE00E1E31A /* iPhoneContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +248,8 @@
 				E93790AD2A1E0AB400A4D49C /* ContentView.swift */,
 				E93790FD2A1E0C5900A4D49C /* State */,
 				E93790F82A1E0C4A00A4D49C /* ImageDownloaderView.swift */,
+				E994A1502BD6E3AE00E1E31A /* iPhoneContentView.swift */,
+				E994A14E2BD6E39000E1E31A /* iPadContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -428,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E994A13D2BD6CF4400E1E31A /* JSONDecoder+SnakeCase.swift in Sources */,
+				E994A1512BD6E3AE00E1E31A /* iPhoneContentView.swift in Sources */,
 				E93790FF2A1E0CBC00A4D49C /* DependencyResolver.swift in Sources */,
 				E994A1352BD6C48400E1E31A /* Urls.swift in Sources */,
 				E93790F32A1E0BFE00A4D49C /* NetworkService.swift in Sources */,
@@ -435,6 +442,7 @@
 				E93790FA2A1E0C4A00A4D49C /* DownloadingView.swift in Sources */,
 				E994A13B2BD6C72900E1E31A /* PokemonList.swift in Sources */,
 				E93790F12A1E0BFE00A4D49C /* DateService.swift in Sources */,
+				E994A14F2BD6E39000E1E31A /* iPadContentView.swift in Sources */,
 				E93790AE2A1E0AB400A4D49C /* ContentView.swift in Sources */,
 				E93791022A1E0CE400A4D49C /* CGFloat+Spacer.swift in Sources */,
 				E93790F92A1E0C4A00A4D49C /* ErrorView.swift in Sources */,

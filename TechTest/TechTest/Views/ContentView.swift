@@ -2,13 +2,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            iPadContentView()
+        case .phone:
+            iPhoneContentView()
+        default:
+            Text("Sorry but the current platform isnt yet supported")
         }
-        .padding()
     }
 }
 
