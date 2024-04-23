@@ -5,7 +5,7 @@ struct PokemonStatsView: View {
     let pokemon: Pokemon
     
     private func labelValueView(label: String, value: String) -> some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .center, spacing: .spacer4) {
             HStack {
                 Spacer()
                 Text(label)

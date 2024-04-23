@@ -11,7 +11,7 @@ extension PokemonListView {
         @Inject private var pokemonService: PokemonService
         private var imageSizeSquare: CGFloat {
             if UIDevice.current.userInterfaceIdiom == .pad {
-                return 100
+                return 80
             } else {
                 return 60
             }
@@ -21,9 +21,21 @@ extension PokemonListView {
         var isSelected: Bool {
             applicationViewModel.selectedPokemonName == pokemonName
         }
+        var noIconImageSquareSize: CGFloat {
+            imageSizeSquare - 20
+        }
         var noIconImage: some View {
-            Image.noIcon
-                .frame(width: imageSizeSquare - 10, height: imageSizeSquare - 10)
+            VStack{
+                Spacer()
+                HStack {
+                    Spacer()
+                    Image.noIcon
+                        .frame(width: noIconImageSquareSize, height: noIconImageSquareSize)
+                    Spacer()
+                }
+                Spacer()
+            }.frame(width: imageSizeSquare, height: imageSizeSquare)
+               
         }
         var body: some View {
             HStack(alignment: .center) {
@@ -42,12 +54,11 @@ extension PokemonListView {
                     }
                 case .downloading:
                     ProgressView()
-                        .frame(width: imageSizeSquare, height: imageSizeSquare)
+                        .frame(width: noIconImageSquareSize, height: noIconImageSquareSize)
                 case .error:
                     noIconImage
                 case .idle:
-                    Color.clear
-                        .frame(width: imageSizeSquare, height: imageSizeSquare)
+                    noIconImage
                 }
                 Text("\(pokemonName.capitalized)")
                     .font(.title)

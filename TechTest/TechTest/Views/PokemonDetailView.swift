@@ -7,15 +7,13 @@ struct PokemonDetailView: View {
     
     init(pokemonName: String) {
         _viewModel = ObservedObject(wrappedValue: PokemonDetailViewModel(pokemonName: pokemonName))
+        viewModel.downloadPokemon()
     }
     var body: some View {
         VStack {
             switch viewModel.viewState {
-            case .downloading:
+            case .idle, .downloading:
                 DownloadingView()
-                    .onAppear {
-                               viewModel.downloadPokemon()
-                           }
             case .downloaded(let pokemon):
                 VStack(spacing: .spacer16) {
                     PokemonStatsView(pokemon: pokemon)
@@ -28,8 +26,6 @@ struct PokemonDetailView: View {
                         .background {
                             Color.detailSectionBackgroundColour
                         }.cornerRadius(.spacer8)
-                }.onAppear {
-                    print("Downloaded view appeaing for \(pokemon.name)")
                 }
             case .error(let error):
                 ErrorView(error: error) {
@@ -39,14 +35,5 @@ struct PokemonDetailView: View {
             Spacer()
         }.padding()
         .navigationTitle(viewModel.pokemonName.capitalized)
-
-        
-//        .onChange(of: viewModel) {
-//            print("View model changed")
-//        }
-//        .onChange(of: pokemonName) { newPokemonName in
-//            _viewModel = .init(pokemonName: newPokemonName)
-//            print("Pokemon changed '\(newPokemonName)")
-//        }
     }
 }

@@ -28,7 +28,6 @@ class PokemonServiceImplementation: PokemonService {
             return cachedPokemon
         } else {
             let requestURL = Urls.pokemonDetail(name: name).url
-//            print("Downloading pokemon at url: \(requestURL)")
             let data = try await networkService.request(.init(url: requestURL))
             return try JSONDecoder.snakeCaseDecoder.decode(Pokemon.self, from: data)
         }
@@ -38,7 +37,6 @@ class PokemonServiceImplementation: PokemonService {
 extension PokemonServiceImplementation {
     private func pokemonList(offset: Int, count: Int) async throws -> PokemonListResponse {
         let requestURL = Urls.pokemonList(offset: offset, count: count).url
-        print("Downloading items at offset: \(offset), count: \(count)")
         let data = try await networkService.request(.init(url: requestURL))
         return try JSONDecoder.snakeCaseDecoder.decode(PokemonListResponse.self, from: data)
     }

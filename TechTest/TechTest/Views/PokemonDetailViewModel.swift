@@ -3,19 +3,19 @@ import SwiftUI
 /// View model for the pokemon details view
 class PokemonDetailViewModel: ObservableObject {
     enum ViewState {
+        case idle
         case downloading
         case error(Error)
         case downloaded(Pokemon)
     }
     
     @Inject private var pokemonService: PokemonService
-    @Published var viewState: ViewState
+    @Published var viewState: ViewState = .idle
     @Published var pokemonName: String
     private var task: Task<(), Never>?
     
     init(pokemonName: String) {
         self.pokemonName = pokemonName
-        viewState = .downloading
     }
     
     func downloadPokemon() {

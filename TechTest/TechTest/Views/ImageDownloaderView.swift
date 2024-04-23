@@ -2,6 +2,7 @@ import SwiftUI
 import Kingfisher
 import FLAnimatedImage
 
+///Downloads images for gif, png, jpg, jpeg
 struct ImageDownloaderView: View {
     private enum ViewState {
         case idle
@@ -23,8 +24,6 @@ struct ImageDownloaderView: View {
     private var gifDownloaderTask: Task<(), Never>? = nil
     @State private var viewState: ViewState = .idle
     @Inject private var networkService: NetworkService
-    
-   
     
     init(width: CGFloat, height: CGFloat, url: URL) {
         self.width = width
@@ -90,7 +89,6 @@ struct ImageDownloaderView: View {
             let imageExension = url.pathExtension.lowercased()
             if imageExension == "gif" {
                 viewState = .downloadingGif
-                print("\(Date.now) Downloading \(url)")
                 let request = URLRequest(url: url)
                 do {
                     let gifData = try await networkService.request(request)
