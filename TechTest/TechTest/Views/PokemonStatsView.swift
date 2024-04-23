@@ -39,11 +39,15 @@ struct PokemonStatsView: View {
                 
                 HStack {
                     ForEach(pokemon.stats) { stat in
+                        
                         VStack(alignment: .center, spacing: .spacer4) {
                             labelValueView(label: "Name", value: stat.name)
                             labelValueView(label: "Effort", value: String(describing: stat.effort))
                             labelValueView(label: "Base Stat", value: String(describing: stat.baseStat))
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel("Stat: \(stat.name). Effort \(String(describing: stat.effort)). BaseStat: \(String(describing: stat.baseStat)).")
+                        
                         .padding(.spacer8)
                         .background {
                             Color.statBackgroundColour

@@ -66,6 +66,8 @@ extension PokemonListView {
                     
                 Spacer()
             }
+            .accessibilityElement()
+            .accessibilityLabel("List item. Pokemon: \(pokemonName)")
             .padding(.leading, 10)
             .frame(maxWidth: .infinity, maxHeight: 100)
             .navigationTitle("Pokemons!")
