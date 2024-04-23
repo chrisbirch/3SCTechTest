@@ -15,18 +15,24 @@ struct PokemonDetailView: View {
             switch viewModel.viewState {
             case .downloading:
                 DownloadingView()
+                    .onAppear {
+                               viewModel.downloadPokemon()
+                           }
             case .downloaded(let pokemon):
-                
-                PokemonStatsView(pokemon: .constant(pokemon))
-                    .padding(.spacer8)
-                    .background {
-                        Color.detailSectionBackgroundColour
-                    }.cornerRadius(.spacer8)
-                PokemonSpritesView(pokemon: .constant(pokemon))
-                    .padding(.spacer8)
-                    .background {
-                        Color.detailSectionBackgroundColour
-                    }.cornerRadius(.spacer8)
+                VStack(spacing: .spacer16) {
+                    PokemonStatsView(pokemon: pokemon)
+                        .padding(.spacer8)
+                        .background {
+                            Color.detailSectionBackgroundColour
+                        }.cornerRadius(.spacer8)
+                    PokemonSpritesView(pokemon: pokemon)
+                        .padding(.spacer8)
+                        .background {
+                            Color.detailSectionBackgroundColour
+                        }.cornerRadius(.spacer8)
+                }.onAppear {
+                    print("Downloaded view appeaing for \(pokemon.name)")
+                }
             case .error(let error):
                 ErrorView(error: error) {
                     viewModel.downloadPokemon()
@@ -34,5 +40,14 @@ struct PokemonDetailView: View {
             }
             Spacer()
         }
+
+        
+//        .onChange(of: viewModel) {
+//            print("View model changed")
+//        }
+//        .onChange(of: pokemonName) { newPokemonName in
+//            _viewModel = .init(pokemonName: newPokemonName)
+//            print("Pokemon changed '\(newPokemonName)")
+//        }
     }
 }

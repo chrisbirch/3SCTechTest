@@ -35,7 +35,7 @@ extension PokemonListView {
                         ImageDownloaderView(
                             width: imageSizeSquare,
                             height: imageSizeSquare,
-                            url: thumbnailURL
+                            url: .constant(thumbnailURL)
                         )
                     } else {
                         noIconImage

@@ -3,7 +3,7 @@ import Kingfisher
 
 /// View used for both iPhone and iPad to display sprites for the selected pokemon
 struct PokemonSpritesView: View {
-    @Binding var pokemon: Pokemon
+    let pokemon: Pokemon
     
     private var spriteImageSquareSize: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -14,9 +14,21 @@ struct PokemonSpritesView: View {
     }
     private func imageView(label: String, url: URL) -> some View {
         VStack {
-            Text("Name: \(label)")
+            if !label.contains("\n") {
+                Text("Standard\n\(label)")
+                    .multilineTextAlignment(.center)
+                    .font(.caption)
+            } else {
+                Text(label)
+                    .multilineTextAlignment(.center)
+                    .font(.caption)
+            }
+            
             let imageSize = spriteImageSquareSize
-            ImageDownloaderView(width: imageSize, height: imageSize, url: url)
+            ImageDownloaderView(width: imageSize, height: imageSize, url: .constant(url))
+                .onAppear {
+                    print("Image downloader appear \(url)")
+                }
         }
     }
     
@@ -30,12 +42,14 @@ struct PokemonSpritesView: View {
             ScrollView(.horizontal) {
                 
                 HStack {
-                    ForEach(pokemon.sprites.all, id: \.self) { url in
-                       imageView(label: "Unknown", url: url)
-                            .padding(.spacer8)
-                            .background {
-                                Color.spriteBackgroundColour
-                            }.cornerRadius(.spacer8)
+                    ForEach(pokemon.sprites.all, id: \.self) { sprite in
+                        if let url = sprite.url {
+                            imageView(label: sprite.name, url: url)
+                                .padding(.spacer8)
+                                .background {
+                                    Color.spriteBackgroundColour
+                                }.cornerRadius(.spacer8)
+                        }
                     }
                 }.padding()
             }

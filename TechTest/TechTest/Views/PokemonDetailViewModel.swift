@@ -10,13 +10,12 @@ class PokemonDetailViewModel: ObservableObject {
     
     @Inject private var pokemonService: PokemonService
     @Published var viewState: ViewState
-    let pokemonName: String
+    @Published var pokemonName: String
     private var task: Task<(), Never>?
     
     init(pokemonName: String) {
         self.pokemonName = pokemonName
         viewState = .downloading
-        downloadPokemon()
     }
     
     func downloadPokemon() {

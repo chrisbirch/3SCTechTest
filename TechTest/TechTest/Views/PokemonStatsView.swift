@@ -2,7 +2,7 @@ import SwiftUI
 
 /// View used for both iPhone and iPad to display Stats for the selected pokemon
 struct PokemonStatsView: View {
-    @Binding var pokemon: Pokemon
+    let pokemon: Pokemon
     
     private func labelValueView(label: String, value: String) -> some View {
         VStack(alignment: .center) {

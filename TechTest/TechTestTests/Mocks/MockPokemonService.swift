@@ -26,7 +26,8 @@ class MockPokemonService : PokemonService {
                     frontDefault: Pokemons.createDummyURL(name: "frontDefault.png"),
                     frontFemale: Pokemons.createDummyURL(name: "frontFemale.png"),
                     frontShiny: Pokemons.createDummyURL(name: "frontShiny.png"),
-                    frontShinyFemale: Pokemons.createDummyURL(name: "frontShinyFemale.png")
+                    frontShinyFemale: Pokemons.createDummyURL(name: "frontShinyFemale.png"),
+                    other: [:]
                 )
             }
             static let pokemon1 = Pokemon(

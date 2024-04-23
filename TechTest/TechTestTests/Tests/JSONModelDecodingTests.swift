@@ -38,6 +38,10 @@ class JSONModelDecodingTests: BaseTestCase {
         XCTAssertNil(sprites.frontFemale)
         XCTAssertEqual(sprites.frontShiny, URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"))
         XCTAssertNil(sprites.frontShinyFemale)
+        
+        guard let otherSpriteDreamWorld = sprites.other?["dream_world"] else { return XCTFail("Failed to get first dream_world sprite") }
+        XCTAssertEqual(otherSpriteDreamWorld.frontDefault, URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"))
+        
     }
 }
 

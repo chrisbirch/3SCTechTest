@@ -32,6 +32,8 @@
 		E9734F382BD7CC3C00CBDFEE /* PokemonDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9734F372BD7CC3C00CBDFEE /* PokemonDetailViewModel.swift */; };
 		E9734F3A2BD7D54B00CBDFEE /* Colours.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9734F392BD7D54B00CBDFEE /* Colours.xcassets */; };
 		E9734F3C2BD7D5C300CBDFEE /* Colour+AppColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9734F3B2BD7D5C300CBDFEE /* Colour+AppColours.swift */; };
+		E9734F3F2BD7EC1200CBDFEE /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = E9734F3E2BD7EC1200CBDFEE /* FLAnimatedImage */; };
+		E9734F412BD7EF2E00CBDFEE /* GifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9734F402BD7EF2E00CBDFEE /* GifView.swift */; };
 		E994A1352BD6C48400E1E31A /* Urls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994A1342BD6C48400E1E31A /* Urls.swift */; };
 		E994A1372BD6C4B100E1E31A /* PokemonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994A1362BD6C4B100E1E31A /* PokemonService.swift */; };
 		E994A1392BD6C50100E1E31A /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994A1382BD6C50100E1E31A /* Pokemon.swift */; };
@@ -105,6 +107,7 @@
 		E9734F372BD7CC3C00CBDFEE /* PokemonDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailViewModel.swift; sourceTree = "<group>"; };
 		E9734F392BD7D54B00CBDFEE /* Colours.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colours.xcassets; sourceTree = "<group>"; };
 		E9734F3B2BD7D5C300CBDFEE /* Colour+AppColours.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colour+AppColours.swift"; sourceTree = "<group>"; };
+		E9734F402BD7EF2E00CBDFEE /* GifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifView.swift; sourceTree = "<group>"; };
 		E994A1342BD6C48400E1E31A /* Urls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Urls.swift; sourceTree = "<group>"; };
 		E994A1362BD6C4B100E1E31A /* PokemonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonService.swift; sourceTree = "<group>"; };
 		E994A1382BD6C50100E1E31A /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E994A1632BD71D7A00E1E31A /* Kingfisher in Frameworks */,
+				E9734F3F2BD7EC1200CBDFEE /* FLAnimatedImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +288,7 @@
 				E994A16B2BD7394A00E1E31A /* PokemonSpritesView.swift */,
 				E994A1662BD7269500E1E31A /* PokemonDetailView.swift */,
 				E9734F372BD7CC3C00CBDFEE /* PokemonDetailViewModel.swift */,
+				E9734F402BD7EF2E00CBDFEE /* GifView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 			name = TechTest;
 			packageProductDependencies = (
 				E994A1622BD71D7A00E1E31A /* Kingfisher */,
+				E9734F3E2BD7EC1200CBDFEE /* FLAnimatedImage */,
 			);
 			productName = TechTest;
 			productReference = E93790A82A1E0AB400A4D49C /* TechTest.app */;
@@ -451,6 +457,7 @@
 			mainGroup = E937909F2A1E0AB400A4D49C;
 			packageReferences = (
 				E994A1612BD71D7A00E1E31A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				E9734F3D2BD7EC1100CBDFEE /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 			);
 			productRefGroup = E93790A92A1E0AB400A4D49C /* Products */;
 			projectDirPath = "";
@@ -505,6 +512,7 @@
 				E93790F32A1E0BFE00A4D49C /* NetworkService.swift in Sources */,
 				E994A1652BD7233E00E1E31A /* ApplicationViewModel.swift in Sources */,
 				E9734F3C2BD7D5C300CBDFEE /* Colour+AppColours.swift in Sources */,
+				E9734F412BD7EF2E00CBDFEE /* GifView.swift in Sources */,
 				E994A1442BD6D3D600E1E31A /* PokemonSprite.swift in Sources */,
 				E994A16C2BD7394A00E1E31A /* PokemonSpritesView.swift in Sources */,
 				E93790FA2A1E0C4A00A4D49C /* DownloadingView.swift in Sources */,
@@ -869,6 +877,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E9734F3D2BD7EC1100CBDFEE /* XCRemoteSwiftPackageReference "FLAnimatedImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Flipboard/FLAnimatedImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		E994A1612BD71D7A00E1E31A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -880,6 +896,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E9734F3E2BD7EC1200CBDFEE /* FLAnimatedImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9734F3D2BD7EC1100CBDFEE /* XCRemoteSwiftPackageReference "FLAnimatedImage" */;
+			productName = FLAnimatedImage;
+		};
 		E994A1622BD71D7A00E1E31A /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E994A1612BD71D7A00E1E31A /* XCRemoteSwiftPackageReference "Kingfisher" */;
