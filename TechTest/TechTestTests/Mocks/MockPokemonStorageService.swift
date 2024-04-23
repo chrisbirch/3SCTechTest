@@ -44,5 +44,4 @@ class MockPokemonStorageService : PokemonStorageService {
             return pokemon
         }
     }
-  
 }

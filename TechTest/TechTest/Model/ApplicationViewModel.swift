@@ -2,9 +2,9 @@ import SwiftUI
 
 class ApplicationViewModel: ObservableObject {
  
-    @Published var naviagtionPath = [PokemonUIItem]()
+    @Published var naviagtionPath = [String]()
     
-    var selectedPokemon: PokemonUIItem? {
+    var selectedPokemonName: String? {
         naviagtionPath.last
     }
 }

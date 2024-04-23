@@ -19,12 +19,12 @@ struct PokemonListView: View {
             
             ScrollView {
                 LazyVStack {
-                    ForEach(filteredItems) { pokemonUIItem in
-                        ListItemView(pokemonUIItem: pokemonUIItem)
+                    ForEach(filteredItems, id: \.self) { pokemonName in
+                        ListItemView(pokemonName: pokemonName)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 withAnimation {
-                                    applicationViewModel.naviagtionPath += [pokemonUIItem]
+                                    applicationViewModel.naviagtionPath = [pokemonName]
                                 }
                             }
                     }

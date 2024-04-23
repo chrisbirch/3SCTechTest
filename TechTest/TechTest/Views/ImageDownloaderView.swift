@@ -19,6 +19,5 @@ struct ImageDownloaderView: View {
             Spacer()
         }
         .frame(maxWidth: width, maxHeight: height)
-        
     }
 }

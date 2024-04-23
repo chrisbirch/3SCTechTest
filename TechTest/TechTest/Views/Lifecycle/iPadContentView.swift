@@ -8,14 +8,12 @@ struct iPadContentView: View {
             PokemonListView()
         } detail: {
             
-            if let pokemonUIItem = applicationViewModel.selectedPokemon {
+            if let pokemonName = applicationViewModel.selectedPokemonName {
                 
-                PokemonDetailView(pokemonUIItem: .constant(pokemonUIItem))
+                PokemonDetailView(pokemonName: pokemonName)
             } else {
-                Text("Nothing selected")
+                Text("Please select a pokemon from the list")
             }
-            
         }
-        
     }
 }

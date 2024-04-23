@@ -3,7 +3,7 @@ import Foundation
 extension PokemonListView {
     class ViewModel: ObservableObject {
         enum State {
-            case showList([PokemonUIItem])
+            case showList([String])
             case error(Error)
             case downloading
         }
@@ -16,35 +16,35 @@ extension PokemonListView {
                 filter(searchText: searchText.lowercased())
             }
         }
-        private var allPokemonUIItems: [PokemonUIItem] = []
+        private var allPokemonNames: [String] = []
 
         private var task: Task<(), Never>?
 
         private func filter(searchText: String) {
             guard case .showList = state else { return }
             guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
-                state = .showList(allPokemonUIItems)
+                state = .showList(allPokemonNames)
                 return
             }
-            let filteredPokemonUIItems = allPokemonUIItems.filter { pokemon in
-                pokemon.name.lowercased().contains(searchText.lowercased())
+            let filteredPokemons = allPokemonNames.filter { pokemonName in
+                pokemonName.lowercased().contains(searchText.lowercased())
             }
-            state = .showList(filteredPokemonUIItems)
+            state = .showList(filteredPokemons)
         }
 
         func downloadList() {
             state = .downloading
-            allPokemonUIItems = []
+            allPokemonNames = []
             task?.cancel()
             task = Task {
                 do {
                     let pokemonItems = try await pokemonService.pokemonList()
                     
                     await MainActor.run {
-                        self.allPokemonUIItems = pokemonItems.map { pokemon in
-                            .init(name: pokemon.name)
+                        self.allPokemonNames = pokemonItems.map { pokemon in
+                            pokemon.name
                         }
-                        self.state = .showList(self.allPokemonUIItems)
+                        self.state = .showList(self.allPokemonNames)
                         self.filter(searchText: searchText)
                     }
                 } catch {

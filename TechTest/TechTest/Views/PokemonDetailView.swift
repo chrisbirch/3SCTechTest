@@ -1,21 +1,17 @@
 import SwiftUI
 
+
+/// Main view used for both iPhone and iPad to display details about the selected pokemon
 struct PokemonDetailView: View {
-    @Binding var pokemonUIItem: PokemonUIItem
-    enum ViewState {
-        case downloading
-        case error(Error)
-        case downloaded(Pokemon)
-    }
-    @State private var viewState: ViewState = .downloading
+    @ObservedObject private var viewModel: PokemonDetailViewModel
     
+    init(pokemonName: String) {
+        _viewModel = ObservedObject(wrappedValue: PokemonDetailViewModel(pokemonName: pokemonName))
+    }
     var body: some View {
         VStack {
-            Text("Detail for: \(pokemonUIItem.name)")
-                .onAppear() {
-                    downloadPokemon()
-                }
-            switch viewState {
+            Text("Detail for: \(viewModel.pokemonName)")
+            switch viewModel.viewState {
             case .downloading:
                 DownloadingView()
             case .downloaded(let pokemon):
@@ -24,29 +20,10 @@ struct PokemonDetailView: View {
                 PokemonSpritesView(pokemon: .constant(pokemon))
             case .error(let error):
                 ErrorView(error: error) {
-                    downloadPokemon()
+                    viewModel.downloadPokemon()
                 }
             }
             Spacer()
-        }
-        .onChange(of: pokemonUIItem) { newValue in
-            downloadPokemon()
-        }
-    }
-    
-    private func downloadPokemon() {
-        Task {
-            do {
-                let pokemon = try await pokemonUIItem.downloadPokemon()
-                await MainActor.run {
-                    viewState = .downloaded(pokemon)
-                }
-                
-            } catch {
-                await MainActor.run {
-                    viewState = .error(error)
-                }
-            }
         }
     }
 }

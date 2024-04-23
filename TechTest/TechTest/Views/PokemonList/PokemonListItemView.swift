@@ -8,11 +8,12 @@ extension PokemonListView {
             case downloaded(Pokemon)
         }
         @EnvironmentObject private var applicationViewModel: ApplicationViewModel
+        @Inject private var pokemonService: PokemonService
         private let imageSizeSquare = CGFloat(50)
-        let pokemonUIItem: PokemonUIItem
+        let pokemonName: String
         @State var state = ViewState.idle
         var isSelected: Bool {
-            applicationViewModel.selectedPokemon == pokemonUIItem
+            applicationViewModel.selectedPokemonName == pokemonName
         }
         var noIconImage: some View {
             Images.noIcon
@@ -42,7 +43,7 @@ extension PokemonListView {
                     Color.clear
                         .frame(width: imageSizeSquare, height: imageSizeSquare)
                 }
-                Text("\(pokemonUIItem.name.capitalized)")
+                Text("\(pokemonName.capitalized)")
                     .font(Font.system(size: 20))
                     .padding(.trailing, .spacer8)
                     
@@ -60,7 +61,7 @@ extension PokemonListView {
             }
             .task {
                 do {
-                    let pokemon = try await pokemonUIItem.downloadPokemon()
+                    let pokemon = try await pokemonService.pokemon(named: pokemonName)
                     state = .downloaded(pokemon)
                 } catch {
                     state = .error

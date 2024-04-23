@@ -6,8 +6,8 @@ struct iPhoneContentView: View {
     var body: some View {
         NavigationStack(path: $applicationViewModel.naviagtionPath) {
             PokemonListView()
-                .navigationDestination(for: PokemonUIItem.self) { path in
-                    PokemonDetailView(pokemonUIItem: .constant(path))
+                .navigationDestination(for: String.self) { pokemonName in
+                    PokemonDetailView(pokemonName: pokemonName)
                 }
             
         }

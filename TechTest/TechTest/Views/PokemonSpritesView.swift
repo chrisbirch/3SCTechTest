@@ -1,6 +1,7 @@
 import SwiftUI
 import Kingfisher
 
+/// View used for both iPhone and iPad to display sprites for the selected pokemon
 struct PokemonSpritesView: View {
     @Binding var pokemon: Pokemon
     

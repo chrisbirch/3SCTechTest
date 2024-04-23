@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// View used for both iPhone and iPad to display Stats for the selected pokemon
 struct PokemonStatsView: View {
     @Binding var pokemon: Pokemon
     
