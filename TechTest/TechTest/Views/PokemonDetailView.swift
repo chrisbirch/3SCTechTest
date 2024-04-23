@@ -10,8 +10,6 @@ struct PokemonDetailView: View {
     }
     var body: some View {
         VStack {
-            Text(viewModel.pokemonName.capitalized)
-                .font(.largeTitle)
             switch viewModel.viewState {
             case .downloading:
                 DownloadingView()
@@ -39,7 +37,8 @@ struct PokemonDetailView: View {
                 }
             }
             Spacer()
-        }
+        }.padding()
+        .navigationTitle(viewModel.pokemonName.capitalized)
 
         
 //        .onChange(of: viewModel) {

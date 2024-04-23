@@ -33,7 +33,7 @@ struct PokemonStatsView: View {
                 Text("Stats")
                     .font(.headline)
                 Spacer()
-            }.padding(.horizontal, .spacer16)
+            }.padding(.horizontal, .spacer4)
 
             ScrollView(.horizontal) {
                 

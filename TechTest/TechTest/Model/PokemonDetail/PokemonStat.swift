@@ -12,7 +12,7 @@ extension Pokemon {
             name
         }
         var name: String {
-            stat.name
+            stat.name.replacingOccurrences(of: "-", with: " ").capitalized
         }
         var url: URL {
             stat.url

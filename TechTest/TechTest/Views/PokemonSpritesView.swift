@@ -12,23 +12,19 @@ struct PokemonSpritesView: View {
             return 80
         }
     }
-    private func imageView(label: String, url: URL) -> some View {
+    private func imageView(categoryLabel: String, label: String, url: URL) -> some View {
         VStack {
-            if !label.contains("\n") {
-                Text("Standard\n\(label)")
-                    .multilineTextAlignment(.center)
-                    .font(.caption)
-            } else {
-                Text(label)
-                    .multilineTextAlignment(.center)
-                    .font(.caption)
-            }
+            Text(categoryLabel)
+                .font(.caption)
+                .bold()
+            Text(label)
+                .multilineTextAlignment(.center)
+                .font(.caption)
+                .lineLimit(2)
+            
             
             let imageSize = spriteImageSquareSize
-            ImageDownloaderView(width: imageSize, height: imageSize, url: .constant(url))
-                .onAppear {
-                    print("Image downloader appear \(url)")
-                }
+            ImageDownloaderView(width: imageSize, height: imageSize, url: url)
         }
     }
     
@@ -38,13 +34,13 @@ struct PokemonSpritesView: View {
                 Text("Sprites")
                     .font(.headline)
                 Spacer()
-            }.padding(.horizontal, .spacer16)
+            }.padding(.horizontal, .spacer4)
             ScrollView(.horizontal) {
                 
                 HStack {
                     ForEach(pokemon.sprites.all, id: \.self) { sprite in
                         if let url = sprite.url {
-                            imageView(label: sprite.name, url: url)
+                            imageView(categoryLabel: sprite.cateogryName, label: sprite.name, url: url)
                                 .padding(.spacer8)
                                 .background {
                                     Color.spriteBackgroundColour

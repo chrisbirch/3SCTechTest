@@ -18,7 +18,7 @@ struct ImageDownloaderView: View {
     ]
     let width: CGFloat
     let height: CGFloat
-    @Binding var url: URL
+    let url: URL
   
     private var gifDownloaderTask: Task<(), Never>? = nil
     @State private var viewState: ViewState = .idle
@@ -26,10 +26,10 @@ struct ImageDownloaderView: View {
     
    
     
-    init(width: CGFloat, height: CGFloat, url: Binding<URL>) {
+    init(width: CGFloat, height: CGFloat, url: URL) {
         self.width = width
         self.height = height
-        self._url = url
+        self.url = url
     }
     
     private var progressView: some View {
@@ -41,8 +41,9 @@ struct ImageDownloaderView: View {
             Spacer()
             switch viewState {
             case .errorDownloadingGif, .idle:
-                Image.noIcon
-                    .frame(maxWidth: width, maxHeight: height)
+                    Image.noIcon
+                        .frame(width: width * 0.5, height: height * 0.5)
+                
             case .downloadingGif:
                 progressView
             case .downloadedGif(let gifData):
@@ -64,19 +65,27 @@ struct ImageDownloaderView: View {
                     .resizable()
                     .fade(duration: 0.25)
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: width, maxHeight: height)
+                    .frame(width: width, height: height)
             case .unsupportedImage(let typeName):
                 HStack{
                     Spacer()
-                    Text("Coming soon\nSupport for .\(typeName) files")
+                    Text("Soon support\n.\(typeName) files")
                         .multilineTextAlignment(.center)
+                        .font(.caption)
+                        .lineLimit(4)
+                        
+                        
                     Spacer()
                 }
+                .background {
+                    Color.detailSectionBackgroundColour
+                }.cornerRadius(.spacer8)
+                    .padding(.spacer2)
             }
                 
                 Spacer()
             }
-        .frame(maxWidth: width, maxHeight: height)
+        .frame(width: width, height: height)
         .task {
             let imageExension = url.pathExtension.lowercased()
             if imageExension == "gif" {
@@ -85,14 +94,22 @@ struct ImageDownloaderView: View {
                 let request = URLRequest(url: url)
                 do {
                     let gifData = try await networkService.request(request)
-                    viewState = .downloadedGif(gifData)
+                    withAnimation {
+                        viewState = .downloadedGif(gifData)
+                    }
                 } catch {
-                    viewState = .errorDownloadingGif
+                    withAnimation {
+                        viewState = .errorDownloadingGif
+                    }
                 }
             } else if supportedMativeImageTypes.contains(imageExension)  {
-                viewState = .normalImage
+                withAnimation {
+                    viewState = .normalImage
+                }
             } else {
-                viewState = .unsupportedImage(typeName: imageExension)
+                withAnimation {
+                    viewState = .unsupportedImage(typeName: imageExension)
+                }
             }
         }
     }

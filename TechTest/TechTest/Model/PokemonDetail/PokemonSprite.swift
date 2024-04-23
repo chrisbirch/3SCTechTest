@@ -14,35 +14,37 @@ extension Pokemon {
         let other: [String: Sprites]?
         
         struct Sprite: Identifiable, Hashable, Equatable {
+            var cateogryName: String
             let name: String
             let url: URL?
             var id: String {
                 name
             }
             
-            func prepending(name: String) -> Sprite {
-                .init(name: "\(name)\n\(self.name)", url: self.url)
-            }
         }
         var allOtherSprites: [Sprite] {
             other?.flatMap { name, sprites in
                 let theseSprites = sprites.all
                 return theseSprites.map { sprite in
-                    sprite.prepending(name: name)
+                    var sprite = sprite
+                    sprite.cateogryName = name
+                    return sprite
                 }
                 
             } ?? []
         }
+        private static let standardCategoryName = "Standard"
         var all: [Sprite] {
+            let standardCategoryName = Self.standardCategoryName
             let thisSpritesValues: [Sprite] = [
-                .init(name: "Back", url: backDefault),
-                .init(name: "Back Female", url: backFemale),
-                .init(name: "Back Shiny", url: backShiny),
-                .init(name: "Back Shiny Female", url: backShinyFemale),
-                .init(name: "Front", url: frontDefault),
-                .init(name: "Front Female", url: frontFemale),
-                .init(name: "Front Shiny", url: frontShiny),
-                .init(name: "Front Shiny Female", url: frontShinyFemale)
+                .init(cateogryName: standardCategoryName, name: "Back", url: backDefault),
+                .init(cateogryName: standardCategoryName,name: "Back Female", url: backFemale),
+                .init(cateogryName: standardCategoryName,name: "Back Shiny", url: backShiny),
+                .init(cateogryName: standardCategoryName,name: "Back Shiny Female", url: backShinyFemale),
+                .init(cateogryName: standardCategoryName,name: "Front", url: frontDefault),
+                .init(cateogryName: standardCategoryName,name: "Front Female", url: frontFemale),
+                .init(cateogryName: standardCategoryName,name: "Front Shiny", url: frontShiny),
+                .init(cateogryName: standardCategoryName,name: "Front Shiny Female", url: frontShinyFemale)
                 
             ]
             let otherSpriteValues = allOtherSprites
