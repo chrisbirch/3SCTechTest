@@ -20,17 +20,13 @@ struct PokemonListView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(filteredItems) { pokemonUIItem in
-//                        if UIDevice.current.userInterfaceIdiom == .pad {
-//                        }
-                        
                         ListItemView(pokemonUIItem: pokemonUIItem)
+                            .contentShape(Rectangle())
                             .onTapGesture {
                                 withAnimation {
                                     applicationViewModel.naviagtionPath += [pokemonUIItem]
                                 }
                             }
-                        
-                        
                     }
                 }
             }.searchable(text: $viewModel.searchText)

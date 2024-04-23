@@ -68,5 +68,4 @@ extension PokemonListView {
             }
         }
     }
-    
 }

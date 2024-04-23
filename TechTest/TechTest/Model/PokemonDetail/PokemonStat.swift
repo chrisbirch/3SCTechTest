@@ -1,6 +1,6 @@
 import Foundation
 extension Pokemon {
-    struct Stat: Decodable, Equatable {
+    struct Stat: Identifiable, Decodable, Equatable {
         struct InnerStat: Decodable, Equatable {
             let name: String
             let url: URL
@@ -8,11 +8,12 @@ extension Pokemon {
         let baseStat: Int
         let effort: Int
         let stat: InnerStat
-        
+        var id: String {
+            name
+        }
         var name: String {
             stat.name
         }
-        
         var url: URL {
             stat.url
         }
