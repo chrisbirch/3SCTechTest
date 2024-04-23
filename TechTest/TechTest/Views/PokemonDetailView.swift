@@ -10,14 +10,23 @@ struct PokemonDetailView: View {
     }
     var body: some View {
         VStack {
-            Text("Detail for: \(viewModel.pokemonName)")
+            Text(viewModel.pokemonName.capitalized)
+                .font(.largeTitle)
             switch viewModel.viewState {
             case .downloading:
                 DownloadingView()
             case .downloaded(let pokemon):
                 
                 PokemonStatsView(pokemon: .constant(pokemon))
+                    .padding(.spacer8)
+                    .background {
+                        Color.detailSectionBackgroundColour
+                    }.cornerRadius(.spacer8)
                 PokemonSpritesView(pokemon: .constant(pokemon))
+                    .padding(.spacer8)
+                    .background {
+                        Color.detailSectionBackgroundColour
+                    }.cornerRadius(.spacer8)
             case .error(let error):
                 ErrorView(error: error) {
                     viewModel.downloadPokemon()

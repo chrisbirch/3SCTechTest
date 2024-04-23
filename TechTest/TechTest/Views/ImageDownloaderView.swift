@@ -15,6 +15,7 @@ struct ImageDownloaderView: View {
                 }
                 .resizable()
                 .fade(duration: 0.25)
+                .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: width, maxHeight: height)
             Spacer()
         }

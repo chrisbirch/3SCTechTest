@@ -5,26 +5,37 @@ import Kingfisher
 struct PokemonSpritesView: View {
     @Binding var pokemon: Pokemon
     
+    private var spriteImageSquareSize: CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return 200
+        } else {
+            return 80
+        }
+    }
     private func imageView(label: String, url: URL) -> some View {
         VStack {
             Text("Name: \(label)")
-            KFImage(url)
+            let imageSize = spriteImageSquareSize
+            ImageDownloaderView(width: imageSize, height: imageSize, url: url)
         }
-        
-        
     }
+    
     var body: some View {
         VStack {
-            Text("Sprites:")
+            HStack {
+                Text("Sprites")
+                    .font(.headline)
+                Spacer()
+            }.padding(.horizontal, .spacer16)
             ScrollView(.horizontal) {
                 
                 HStack {
                     ForEach(pokemon.sprites.all, id: \.self) { url in
                        imageView(label: "Unknown", url: url)
-                        .padding(10)
-                        .background {
-                            Color.green
-                        }
+                            .padding(.spacer8)
+                            .background {
+                                Color.spriteBackgroundColour
+                            }.cornerRadius(.spacer8)
                     }
                 }.padding()
             }

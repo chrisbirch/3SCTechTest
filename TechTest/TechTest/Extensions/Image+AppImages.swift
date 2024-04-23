@@ -1,5 +1,5 @@
 import SwiftUI
 
-enum Images {
+extension Image {
     static let noIcon = Image("NoIcon").resizable()
 }

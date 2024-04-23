@@ -9,14 +9,20 @@ extension PokemonListView {
         }
         @EnvironmentObject private var applicationViewModel: ApplicationViewModel
         @Inject private var pokemonService: PokemonService
-        private let imageSizeSquare = CGFloat(50)
+        private var imageSizeSquare: CGFloat {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                return 100
+            } else {
+                return 60
+            }
+        }
         let pokemonName: String
         @State var state = ViewState.idle
         var isSelected: Bool {
             applicationViewModel.selectedPokemonName == pokemonName
         }
         var noIconImage: some View {
-            Images.noIcon
+            Image.noIcon
                 .frame(width: imageSizeSquare - 10, height: imageSizeSquare - 10)
         }
         var body: some View {
@@ -44,7 +50,7 @@ extension PokemonListView {
                         .frame(width: imageSizeSquare, height: imageSizeSquare)
                 }
                 Text("\(pokemonName.capitalized)")
-                    .font(Font.system(size: 20))
+                    .font(.title)
                     .padding(.trailing, .spacer8)
                     
                 Spacer()
@@ -55,7 +61,7 @@ extension PokemonListView {
             .background {
                 if isSelected {
                     RoundedRectangle(cornerRadius: 6, style: .continuous)
-                        .fill(.red)
+                        .fill(Color.listSelectionColour)
                         .padding(4)
                 } else { Color.clear }
             }
