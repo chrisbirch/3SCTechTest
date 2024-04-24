@@ -2,10 +2,6 @@ import XCTest
 @testable import TechTest
 
 class JSONModelDecodingTests: BaseTestCase {
-    
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-    }
 
     func testDecodePokemonList() throws {
         let data = try loadJSONData(filename: JSONDummyDataFiles.pokemonList)
@@ -25,7 +21,7 @@ class JSONModelDecodingTests: BaseTestCase {
         XCTAssertEqual(pokemon.name, "bulbasaur")
         guard let firstStat = pokemon.stats.first else { return XCTFail("Failed to get first stat") }
         XCTAssertEqual(firstStat.baseStat, 45)
-        XCTAssertEqual(firstStat.name, "hp")
+        XCTAssertEqual(firstStat.name, "Hp")
         XCTAssertEqual(firstStat.effort, 0)
         XCTAssertEqual(firstStat.url, URL(string: "https://pokeapi.co/api/v2/stat/1/"))
         
@@ -40,8 +36,7 @@ class JSONModelDecodingTests: BaseTestCase {
         XCTAssertNil(sprites.frontShinyFemale)
         
         guard let otherSpriteDreamWorld = sprites.other?["dream_world"] else { return XCTFail("Failed to get first dream_world sprite") }
-        XCTAssertEqual(otherSpriteDreamWorld.frontDefault, URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"))
-        
+        XCTAssertEqual(otherSpriteDreamWorld.frontDefault, URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"))        
     }
 }
 

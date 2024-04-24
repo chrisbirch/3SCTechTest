@@ -27,7 +27,6 @@ struct PokemonSpritesView: View {
             ImageDownloaderView(width: imageSize, height: imageSize, url: url)
         } .accessibilityElement()
             .accessibilityLabel("Sprite. Category: \(categoryLabel) - \(label)")
-           
     }
     
     var body: some View {

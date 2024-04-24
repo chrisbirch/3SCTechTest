@@ -26,10 +26,6 @@ actor NetworkServiceImplementation: NetworkService {
             if (200...299).contains(response.statusCode) {
                 return data
             }
-//            else if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-//                let errorMessage = errorResponse.status.errorMessage
-//                throw NetworkError.otherError(errorMessage)
-//            }
             else {
                 throw NetworkError.otherError("Invalid response")
             }

@@ -1,6 +1,7 @@
 import Foundation
 
 extension Pokemon {
+    private static let standardCategoryName = "Standard"
     struct Sprites: Decodable, Equatable, Hashable {
         let backDefault: URL?
         let backFemale: URL?
@@ -20,8 +21,8 @@ extension Pokemon {
             var id: String {
                 name
             }
-            
         }
+        
         var allOtherSprites: [Sprite] {
             other?.flatMap { name, sprites in
                 let theseSprites = sprites.all
@@ -33,9 +34,9 @@ extension Pokemon {
                 
             } ?? []
         }
-        private static let standardCategoryName = "Standard"
+        
         var all: [Sprite] {
-            let standardCategoryName = Self.standardCategoryName
+            let standardCategoryName = standardCategoryName
             let thisSpritesValues: [Sprite] = [
                 .init(cateogryName: standardCategoryName, name: "Back", url: backDefault),
                 .init(cateogryName: standardCategoryName,name: "Back Female", url: backFemale),

@@ -7,7 +7,6 @@ struct iPadContentView: View {
         NavigationSplitView {
             PokemonListView()
         } detail: {
-            
             if let pokemonName = applicationViewModel.selectedPokemonName {
                 
                 PokemonDetailView(pokemonName: pokemonName)

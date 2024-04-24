@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 /// Main view used for both iPhone and iPad to display details about the selected pokemon
 struct PokemonDetailView: View {
     @ObservedObject private var viewModel: PokemonDetailViewModel

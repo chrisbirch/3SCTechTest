@@ -10,6 +10,13 @@ class Pokemon: ObservableObject, Decodable, Identifiable, Equatable {
     let sprites: Sprites
     let stats: [Stat]
     
+    init(id: Int, name: String, sprites: Sprites, stats: [Stat]) {
+        self.id = id
+        self.name = name
+        self.sprites = sprites
+        self.stats = stats
+    }
+    
     var thumbnailImageURL: URL? {
         sprites.all.first?.url
     }

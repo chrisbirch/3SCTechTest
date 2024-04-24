@@ -35,7 +35,7 @@ extension PokemonListView {
                 }
                 Spacer()
             }.frame(width: imageSizeSquare, height: imageSizeSquare)
-               
+            
         }
         var body: some View {
             HStack(alignment: .center) {
@@ -63,7 +63,7 @@ extension PokemonListView {
                 Text("\(pokemonName.capitalized)")
                     .font(.title)
                     .padding(.trailing, .spacer8)
-                    
+                
                 Spacer()
             }
             .accessibilityElement()

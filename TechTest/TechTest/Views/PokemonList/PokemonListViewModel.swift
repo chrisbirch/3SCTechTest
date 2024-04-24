@@ -7,7 +7,7 @@ extension PokemonListView {
             case error(Error)
             case downloading
         }
-
+        
         @Inject private var pokemonService: PokemonService
         @Published private(set) var state: State = .downloading
         
@@ -17,9 +17,9 @@ extension PokemonListView {
             }
         }
         private var allPokemonNames: [String] = []
-
+        
         private var task: Task<(), Never>?
-
+        
         private func filter(searchText: String) {
             guard case .showList = state else { return }
             guard !searchText.trimmingCharacters(in: .whitespaces).isEmpty else {
@@ -31,7 +31,7 @@ extension PokemonListView {
             }
             state = .showList(filteredPokemons)
         }
-
+        
         func downloadList() {
             state = .downloading
             allPokemonNames = []
@@ -54,7 +54,7 @@ extension PokemonListView {
                 }
             }
         }
-
+        
         init() {
             downloadList()
         }

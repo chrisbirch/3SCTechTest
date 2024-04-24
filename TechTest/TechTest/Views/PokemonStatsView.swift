@@ -16,10 +16,9 @@ struct PokemonStatsView: View {
             HStack {
                 Spacer()
                 Text(value)
-                    
+                
                 Spacer()
             }
-            
         }
         .padding(.horizontal, .spacer4)
         .padding(.vertical, .spacer2)
@@ -34,9 +33,8 @@ struct PokemonStatsView: View {
                     .font(.headline)
                 Spacer()
             }.padding(.horizontal, .spacer4)
-
+            
             ScrollView(.horizontal) {
-                
                 HStack {
                     ForEach(pokemon.stats) { stat in
                         

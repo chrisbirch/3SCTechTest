@@ -10,6 +10,6 @@ class PokemonServiceTests: BaseTestCase {
     }
 
     func test() async throws {
-      
+        //ran out of time to test this service :(
     }
 }
